@@ -9,6 +9,7 @@
   "dependencies": {
     "hono": "^3.10.1",
     "htm": "^3.1.1",
+    "marked": "^10.0.0",
     "preact": "^10.19.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

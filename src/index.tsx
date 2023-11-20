@@ -16,13 +16,12 @@ import {Layout} from './pages/layout';
 import Top from './pages/Top';
 import Test1 from './pages/test/App';
 import Test2 from './pages/test2/App';
-//import Test3 from './pages/test3/App';
+import Test3 from './pages/test3/App';
 import Test4 from './pages/test4/App';
-//app.get('*', renderer)
-
+import Test5 from './pages/test5/App';
 //
 app.get('/', (c) => {
-  return c.html(renderToString(<h1>Hello-123</h1>))
+  return c.html(renderToString(<h1>Hello-react-dom</h1>))
 })
 app.get('/test1', async (c) => {
   const sql = `
@@ -35,21 +34,26 @@ app.get('/test1', async (c) => {
 console.log(result.results);
   return c.html(
     renderToString(
-      <div>
+    <div>
       <h1>Hello!</h1>
       {JSON.stringify(result.results)}
-      </div>
-  
+    </div>
     )
   )
 })
 app.get('/test2', async (c) => { 
   return c.html(renderToString(Test2([])));
 });
+app.get('/test3', async (c) => { 
+  return c.html(renderToString(Test3([])));
+});
 app.get('/test4', async (c) => { 
   const items = await testRouter.get_list(c, c.env.DB);
 //console.log(items);
   return c.html(renderToString(Test4(items)));
+});
+app.get('/test5', async (c) => { 
+  return c.html(renderToString(Test5([])));
 });
 /******
 API
