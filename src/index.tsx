@@ -1,5 +1,4 @@
 import { Hono } from 'hono'
-//import { renderer } from './renderer'
 import type { Database } from '@cloudflare/d1'
 import { renderToString } from 'react-dom/server';
 //
@@ -12,13 +11,16 @@ const app = new Hono()
 import testRouter from './routes/test';
 import taskRouter from './routes/tasks';
 //pages
-import {Layout} from './pages/layout';
+//import {Layout} from './pages/layout';
 import Top from './pages/Top';
 import Test1 from './pages/test/App';
 import Test2 from './pages/test2/App';
 import Test3 from './pages/test3/App';
 import Test4 from './pages/test4/App';
 import Test5 from './pages/test5/App';
+/* tasks */
+import TaskIndex from './pages/tasks/App';
+import TaskShow from './pages/tasks/show/App';
 //
 app.get('/', (c) => {
   return c.html(renderToString(<h1>Hello-react-dom</h1>))
@@ -55,6 +57,22 @@ app.get('/test4', async (c) => {
 app.get('/test5', async (c) => { 
   return c.html(renderToString(Test5([])));
 });
+/* tasks */
+app.get('/tasks', async (c) => { 
+  let page = c.req.query('page');
+  if(!page) { page = '1';}
+console.log("page=", page);
+  const items = await testRouter.get_list_page(c, c.env.DB, page);
+  return c.html(renderToString(<TaskIndex items={items} page={page} />));
+});
+app.get('/tasks/:id', async (c) => { 
+  const {id} = c.req.param();
+console.log("id=", id);
+  const item = await testRouter.get(c, c.env.DB, id);
+console.log(item);
+  return c.html(renderToString(<TaskShow item={item} id={Number(id)} />));
+});
+
 /******
 API
 ******/

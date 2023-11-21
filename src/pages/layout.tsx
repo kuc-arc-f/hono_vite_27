@@ -18,6 +18,7 @@ export default function Page(props: any) {
           <a href="/test2"><span className="ps-2">[ Test2 ]</span></a>
           <a href="/test3"><span className="ps-2">[ Test3 ]</span></a>
           <a href="/test4"><span className="ps-2">[ Test4 ]</span></a>
+          <a href="/tasks"><span className="ps-2">[ Tasks ]</span></a>
         </div>
         <hr />
         <div className ="container mx-auto my-2 px-8 bg-white">{props.children}</div>
@@ -25,8 +26,6 @@ export default function Page(props: any) {
     </html>
     )
 }
-
-
 /*
 <div class="container mx-auto my-2 px-8 bg-white">{props.children}</div>
 */
