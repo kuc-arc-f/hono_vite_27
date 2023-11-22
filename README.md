@@ -6,12 +6,12 @@
 
  date    : 2023/11/19
 
- update  :
+ update  : 2023/11/22
 
 ***
 ### Summary
 
-hono + react SSR, sample
+hono + react SSR + D1 + pages, sample
 
 ***
 ### blog 

@@ -11,7 +11,6 @@ const app = new Hono()
 import testRouter from './routes/test';
 import taskRouter from './routes/tasks';
 //pages
-//import {Layout} from './pages/layout';
 import Top from './pages/Top';
 import Test1 from './pages/test/App';
 import Test2 from './pages/test2/App';
@@ -23,15 +22,13 @@ import TaskIndex from './pages/tasks/App';
 import TaskShow from './pages/tasks/show/App';
 //
 app.get('/', (c) => {
-  return c.html(renderToString(<h1>Hello-react-dom</h1>))
+  return c.html(renderToString(Top([])))
 })
 app.get('/test1', async (c) => {
   const sql = `
   INSERT INTO Task ( title, content)
     VALUES('t1', 'b2');
     `;
-//    await c.env.DB.prepare(sql).run();
-//  const result = await c.env.DB.prepare(`SELECT * FROM Task ORDER BY id DESC`).all();
   const result = await c.env.DB.prepare(`SELECT * FROM Task ORDER BY id DESC`).all();
 console.log(result.results);
   return c.html(

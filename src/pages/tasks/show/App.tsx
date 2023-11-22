@@ -20,17 +20,15 @@ console.log(props.item);
             content:<br />
             <pre>{props.item.content}</pre>
             <hr className="my-2" />
+            <input type="text" className="d-none" id="item_id" defaultValue={props.item.id} />
             <div id="root"></div>
-            <script>
-            let TaskItemId = ${props.item.id};
-            </script>`
             <button id="btn_delete" className="btn-red ms-2 my-2">Delete</button>
             {/* TS */}
             {import.meta.env.PROD ? (
                 <script src="/static/TaskShow.js"></script>
             ) : (
                 <script src="/src/client/TaskShow.ts"></script>
-            )}            
+            )}
         </div>       
         </div>
     </Layout>

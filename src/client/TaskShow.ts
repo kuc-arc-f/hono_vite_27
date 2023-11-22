@@ -1,9 +1,13 @@
 
 //@ts-ignore
-console.log("#TaskShow.client=", TaskItemId);
+//console.log("#TaskShow.client=", TaskItemId);
+let itemId = 0;
 //
 //
 const TaskShow = {
+    testFunc: function(n: number){
+        console.log("testFunc=", n);
+    },
     /**
      *
      * @param
@@ -17,7 +21,7 @@ const TaskShow = {
             const item = {
                 api_key: "",
                 //@ts-ignore
-                id: Number(TaskItemId),
+                id: Number(itemId),
             }
 console.log(item);
 //return;
@@ -57,6 +61,8 @@ console.log(json);
         try{
 console.log("#startProc");
             //btn
+            const item_id = document.querySelector('#item_id') as HTMLInputElement;
+            if(item_id) { itemId = Number(item_id.value);}
             const button = document.querySelector('#btn_delete') as HTMLElement;
             button.addEventListener('click', async () => {
 //console.log("btn_delete=");
@@ -65,7 +71,8 @@ console.log("result=", result);
                 if(result === true) {
                     window.location.href = '/tasks';
                 }
-            }); 
+            });
+//console.log("itemId=", itemId) 
         } catch (e) {
             console.error(e);
         }    
