@@ -20,6 +20,7 @@ import Test5 from './pages/test5/App';
 /* tasks */
 import TaskIndex from './pages/tasks/App';
 import TaskShow from './pages/tasks/show/App';
+import TaskEdit from './pages/tasks/edit/App';
 //
 app.get('/', (c) => {
   return c.html(renderToString(Top([])))
@@ -68,6 +69,13 @@ console.log("id=", id);
   const item = await testRouter.get(c, c.env.DB, id);
 console.log(item);
   return c.html(renderToString(<TaskShow item={item} id={Number(id)} />));
+});
+app.get('/tasks_edit/:id', async (c) => { 
+  const {id} = c.req.param();
+console.log("id=", id);
+  const item = await testRouter.get(c, c.env.DB, id);
+console.log(item);
+  return c.html(renderToString(<TaskEdit item={item} id={Number(id)} />));
 });
 
 /******

@@ -1,8 +1,9 @@
 import { marked } from 'marked';
 import MicroModal from 'micromodal';
+let itemId = 0;
 
 //@ts-ignore
-console.log("#TaskEdit.client=", TaskItemId);
+//console.log("#TaskEdit.client=");
 //
 const TaskEdit = {
     /**
@@ -27,7 +28,7 @@ const TaskEdit = {
             }            
             const item = {
                 //@ts-ignore
-                id: Number(TaskItemId),
+                id: Number(itemId),
                 title: titleValue,
                 content: contentValue,
             }
@@ -85,7 +86,11 @@ console.log(json);
     {
         try{
 console.log("#startProc");
-            MicroModal.init();
+//            MicroModal.init();
+            //
+            const item_id = document.querySelector('#item_id') as HTMLInputElement;
+            if(item_id) { itemId = Number(item_id.value);}
+console.log("itemId=", itemId) 
             const button = document.querySelector('#btn_save') as HTMLElement;
             button.addEventListener('click', async () => {
 console.log("btn_save=");
@@ -94,12 +99,6 @@ console.log("result=", result);
                 if(result === true) {
                     window.location.href = '/tasks';
                 }
-            });
-            //show_modal_btn 
-            const shoWButton = document.querySelector('#show_modal_btn') as HTMLElement;
-            shoWButton?.addEventListener('click', async () => {
-            //console.log("show_modal_btn=");
-                this.showProc();
             });
         } catch (e) {
             console.error(e);
