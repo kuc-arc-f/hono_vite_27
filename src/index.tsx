@@ -17,6 +17,7 @@ import Test2 from './pages/test2/App';
 import Test3 from './pages/test3/App';
 import Test4 from './pages/test4/App';
 import Test5 from './pages/test5/App';
+import Test13 from './pages/test13/App';
 /* tasks */
 import TaskIndex from './pages/tasks/App';
 import TaskShow from './pages/tasks/show/App';
@@ -54,6 +55,9 @@ app.get('/test4', async (c) => {
 });
 app.get('/test5', async (c) => { 
   return c.html(renderToString(Test5([])));
+});
+app.get('/test13', async (c) => { 
+  return c.html(renderToString(Test13([])));
 });
 /* tasks */
 app.get('/tasks', async (c) => { 

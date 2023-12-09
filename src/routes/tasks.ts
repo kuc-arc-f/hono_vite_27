@@ -1,6 +1,5 @@
 //import { Hono } from "hono";
 import type { Database } from '@cloudflare/d1'
-//import {Test9} from '../views/test9/App';
 //
 interface Env {
     DB: Database
@@ -29,27 +28,6 @@ const Router = {
             return Response.json(retObj);
         } 
     },   
-    /**
-     * route
-     * @param
-     *
-     * @return
-     */ 
-    test10: async function(c, DB)
-    {
-        try{    
-            const result = await DB.prepare(`SELECT * FROM Task ORDER BY id DESC`).all();
-    console.log(result.results);
-            if(result.results.length < 1) {
-                console.error("Error, results.length < 1");
-                return Response.json({ret: "OK", data: []});
-            }
-            return result.results;
-        } catch (e) {
-            console.error(e);
-            return [];
-        } 
-    },
     /**
      *
      * @param
@@ -130,12 +108,6 @@ console.log(body);
         try{    
 console.log(body);
             if (body) {
-                /*
-                const sql = `
-                INSERT INTO Task ( title, content)
-                VALUES('${body.title}', '${body.content}');
-                `;
-                */
                 const sql = `
                 UPDATE Task 
                 SET title = '${body.title}', content='${body.content}'
