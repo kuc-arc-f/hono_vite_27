@@ -55,6 +55,46 @@ console.log("#get_list");
      * @param
      *
      * @return
+     */ 
+    search: async function(body, c, DB)
+    {
+//console.log("#search");
+        try{    
+            if (body) {
+                //userId = ${body.userId}
+                const sql = `
+                SELECT * FROM Task
+                WHERE title like '%${body.seachKey}%'
+                ORDER BY id DESC
+                LIMIT 1000
+                `;  
+console.log(sql);
+                const result = await DB.prepare(sql).all();
+                //console.log(result.results);
+                if(result.results.length < 1) {
+                    console.error("Error, results.length < 1");
+                    return [];
+                }
+                return result.results;
+            }
+            return [];
+        } catch (e) {
+            console.error(e);
+            return [];
+        } 
+    },
+    /**
+     *
+     * @param
+     *
+     * @return
+     */ 
+
+    /**
+     *
+     * @param
+     *
+     * @return
      */    
     get: async function(body, c, DB)
     {

@@ -105,6 +105,11 @@ app.post('/api/tasks/get_list', async (c) => {
   const resulte = await taskRouter.get_list(c, c.env.DB);
   return c.json({ret: "OK", data: resulte});
 });
+app.post('/api/tasks/search', async (c) => { 
+  const body = await c.req.json();
+  const resulte = await taskRouter.search(body, c, c.env.DB);
+  return c.json({ret: "OK", data: resulte});
+});
 app.post('/api/tasks/get', async (c) => { 
   const body = await c.req.json();
   const resulte = await taskRouter.get(body, c, c.env.DB);
